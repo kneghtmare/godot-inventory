@@ -15,6 +15,12 @@ func display_item(item: Item) -> void:
 		itemTextureRect.texture = emptyInventorySlotTexture
 
 
+func update_display() -> void:
+	for index in inventory.items.size():
+		if index == get_index():
+			display_item(inventory.items[index])
+			
+
 func get_drag_data(_position: Vector2) -> Dictionary:
 	var item_index: int = get_index()
 	var item: Item = get_item()
@@ -30,6 +36,7 @@ func get_drag_data(_position: Vector2) -> Dictionary:
 	
 	return {}	
 
+
 func get_item() -> Item:
 	var my_index: int = get_index()
 	return inventory.items[my_index]
@@ -40,11 +47,12 @@ func can_drop_data(_position: Vector2, data) -> bool:
 
 	
 func drop_data(_position, data):
-	display_item(get_item())
 	#gets our item
 	var my_item_index: int = get_index()
 	var my_item = inventory.items[my_item_index]
 	inventory.swap_items(my_item_index, data.item_index)
 	inventory.set_item(my_item_index, data.item)
+	display_item(get_item())	
 	
 	
+			
