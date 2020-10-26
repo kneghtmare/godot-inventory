@@ -34,6 +34,7 @@ func get_drag_data(_position: Vector2) -> Dictionary:
 		set_drag_preview(dragPreview)
 		return data
 	
+	display_item(get_item())
 	return {}	
 
 
@@ -46,7 +47,7 @@ func can_drop_data(_position: Vector2, data) -> bool:
 	return data is Dictionary and data.has("item")
 
 	
-func drop_data(_position, data):
+func drop_data(_position, data) -> void:
 	#gets the item that was previously there and stores it inside my_item
 	var my_item_index: int = get_index()
 	var my_item: Item = inventory.items[my_item_index]
@@ -57,5 +58,9 @@ func drop_data(_position, data):
 	else:
 		inventory.swap_items(my_item_index, data.item_index)
 		inventory.set_item(my_item_index, data.item)
-		display_item(get_item())
-				
+		inventory.items[my_item_index].amount = data.item.amount
+	
+	
+	display_item(get_item())
+	
+	

@@ -1,6 +1,8 @@
 extends GridContainer
+class_name InventoryDisplay
 
 var inventory: Inventory = preload("res://Inventory.tres")
+
 
 func _ready() -> void:
 	inventory.connect("items_changed",self,"_on_items_changed")
@@ -14,5 +16,5 @@ func update_slot_displays() -> void:
 
 
 func _on_items_changed(indexes: Array) -> void:
+	yield(get_tree(),"idle_frame")
 	update_slot_displays()
-	
