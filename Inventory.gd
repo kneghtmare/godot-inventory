@@ -13,7 +13,7 @@ export (Array, Resource) var items: Array = [
 
 func set_item(item_index: int, item: Item) -> Item:
 	var previousItem = items[item_index] #stores the previousItem
-	items[item_index] = item #sets the item_index index in items to the passed in tem
+	items[item_index] = item.duplicate() #sets the item_index index in items to the passed in tem
 	emit_signal("items_changed",[item_index]) 
 	return previousItem
 
@@ -36,7 +36,7 @@ func remove_item(item_index: int) -> Item:
 
 
 func make_items_unique() -> void:
-	var unique_items = []
+	var unique_items: Array = []
 	#loops through all items and duplicates the items so they won't be shared	
 	for item in items:
 		if item is Item:
@@ -44,3 +44,4 @@ func make_items_unique() -> void:
 		else:
 			unique_items.append(null)
 	
+	items = unique_items	
