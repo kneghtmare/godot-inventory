@@ -14,7 +14,7 @@ func update_inventory_display() -> void:
 
 func update_inventory_slot_display(item_index: int) -> void:
 	var inventorySlotDisplay: InventorySlotDisplay = get_child(item_index)
-	var item = inventory.items[item_index]
+	var item: Item = inventory.items[item_index]
 	inventorySlotDisplay.display_item(item)
 
 

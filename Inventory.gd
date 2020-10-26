@@ -24,7 +24,7 @@ func swap_items(item_index: int, target_item_index: int) -> void:
 	#swaps them
 	items[item_index] = target_item
 	items[target_item_index] = item
-	emit_signal("item_changed",[item_index, target_item_index])
+	emit_signal("items_changed",[item_index, target_item_index])
 
 
 func remove_item(item_index: int) -> Item:
