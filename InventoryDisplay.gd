@@ -15,3 +15,4 @@ func update_slot_displays() -> void:
 
 func _on_items_changed(indexes: Array) -> void:
 	update_slot_displays()
+	
