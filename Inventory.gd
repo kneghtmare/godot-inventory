@@ -11,10 +11,10 @@ export (Array, Resource) var items: Array = [
 
 
 func set_item(item_index: int, item: Item) -> Item:
-	var previous_item = items[item_index] #stores the previous_item
+	var previousItem = items[item_index] #stores the previousItem
 	items[item_index] = item #sets the item_index index in items to the passed in tem
 	emit_signal("items_changed",[item_index]) 
-	return previous_item
+	return previousItem
 
 
 func swap_items(item_index: int, target_item_index: int) -> void:
@@ -28,7 +28,7 @@ func swap_items(item_index: int, target_item_index: int) -> void:
 
 
 func remove_item(item_index: int) -> Item:
-	var previous_item = items[item_index]
+	var previousItem = items[item_index]
 	items[item_index] = null #sets the item_index index in items to null
 	emit_signal("items_changed",[item_index])
-	return previous_item
+	return previousItem
