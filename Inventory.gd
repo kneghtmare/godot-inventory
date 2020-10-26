@@ -3,6 +3,7 @@ class_name Inventory
 
 signal items_changed(indexes)
 
+
 export (Array, Resource) var items: Array = [
 	null, null, null,
 	null, null, null,
@@ -32,3 +33,14 @@ func remove_item(item_index: int) -> Item:
 	items[item_index] = null #sets the item_index index in items to null
 	emit_signal("items_changed",[item_index])
 	return previousItem
+
+
+func make_items_unique() -> void:
+	var unique_items = []
+	#loops through all items and duplicates the items so they won't be shared	
+	for item in items:
+		if item is Item:
+			unique_items.append(item.duplicate())
+		else:
+			unique_items.append(null)
+	
